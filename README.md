@@ -1,1 +1,1 @@
-# ProjectGitSample
+# fallacy-template
