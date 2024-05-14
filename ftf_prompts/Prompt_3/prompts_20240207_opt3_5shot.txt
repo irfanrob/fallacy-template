@@ -1,0 +1,284 @@
+=== fallacy_identification ===
+Classify a given argument into one of the following fallacy types:
+Fallacy of Credibility, Fallacy of Logic, False Causality, False Dilemma, or Faulty Generalization
+Answer only the fallacy type.
+No other words or explanation.
+Argument:
+{}
+===
+=== fallacy_structure_analysis: False Dilemma ===
+# Task
+Identify the underlying structure of an argument of False Dilemma.
+Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, filling the template's placeholders.
+Please follow the Output Format!!!
+# List of Templates
+Template No.1:
+Premise 1: An entity/action [A] promotes a good entity/action [C].
+Premise 2: The absence of an entity/action [A] suppresses a good entity/action [C].
+Conclusion: Therefore, [A] should be brought about.
+
+Template No.2:
+Premise 1: An entity/action [A] suppresses a bad entity/action [C]
+Premise 2: The absence of an entity/action [A] promotes a bad entity/action [C].
+Conclusion: Therefore, [A] should be brought about.
+
+Template No.3:
+Premise 1: An entity/action [A] suppresses a good entity/action [C]
+Premise 2: The absence of an entity/action [A] promotes a good entity/action [C].
+Conclusion: Therefore, [A] should not be brought about.
+
+Template No.4:
+Premise 1: An entity/action [A] promotes a bad entity/action [C]
+Premise 2: The absence of an entity/action [A] suppresses a bad entity/action [C].
+Conclusion: Therefore, [A] should not be brought about.
+
+Template No.5:
+There is either no consequence in the argument, or the argument cannot be instantiated with one of the templates above.
+
+# Output Format
+Template No.=[No.]
+[A]=
+[C]=
+
+ Example1
+If you can't prove that Ken had an affair with the nanny, then he's been faithful to his wife.
+Template No.=1
+[A]=prove that Ken had an affair with the nanny
+[C]=he's been faithful to his wife
+
+# Example2
+People either like coffee or hate it.
+Template No.=2
+[A]=like coffee
+[C]=hate
+
+# Example4
+We cannot support immigrants because we have too many homeless and poor Americans.
+Template No.=4
+[A]=support immigrants
+[C]=homeless and poor Americans
+
+# Example5
+The speaker insinuates that there are only two options despite this not being true.
+Template No.=5
+[A]=
+[C]=
+
+# Query
+{}
+===
+=== fallacy_structure_analysis: Faulty Generalization ===
+# Task
+Identify the underlying structure of an argument of Faulty Generalization.
+Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, filling the template's placeholders.
+Please follow the Output Format!!!
+# List of Templates
+Template No.1:
+Premise 1: An entity/action [A] suppresses a good entity/action [C].
+Premise 2: An entity/action [A] or [A'] suppresses a good entity/action [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
+Conclusion: Therefore, [A] should not be brought about.
+
+Template No.2:
+Premise 1: An entity/action [A] promotes a bad entity/action [C].
+Premise 2: An entity/action [A] or [A'] promotes a bad entity/action [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
+Conclusion: Therefore, [A] should not be brought about.
+
+Template No.3:
+Premise 1: An entity/action [A] promotes a good entity/action [C].
+Premise 2: An entity/action [A] or [A'] promotes a good entity/action [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
+Conclusion: Therefore, [A] should be brought about.
+
+Template No.4:
+Premise 1: An entity/action [A] suppresses a bad entity/action [C].
+Premise 2: An entity/action [A] or [A'] suppresses a bad entity/action [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
+Conclusion: Therefore, [A] should be brought about.
+
+Template No.5:
+There is either no consequence in the argument, or the argument cannot be instantiated with one of the templates above.
+
+# Output Format
+Template No.=[No.]
+[A]=
+[C]=
+[A']=
+[C']=
+# Example1
+My mother has always told me not to drink milk after eating fish because she knows a friend whose skin got patched after drinking milk and eating fish together. Besides, many other people have told me the same thing so it must be true.
+Template No.=1
+[A]=drink milk after eating fish
+[C]=people
+[A']=
+[C']=friend
+
+# Example2
+I know four poor families. They are lazy drug addicts. Therefore, all poor people are lazy drug addicts.
+Template No.=2
+[A]=all poor people
+[C]=lazy drug addicts
+[A']=four poor families
+[C']=
+
+# Example3
+Based on a survey of 1000 American homeowners, 99% of those surveyed have two or more automobiles worth on average $100,000 each. Therefore, Americans are very wealthy.
+Template No.=3
+[A]=Americans
+[C]=wealthy
+[A']=1000 American homeowners
+[C']=
+
+# Example4
+I know four poor families. They are lazy drug addicts. Therefore, all poor people are lazy drug addicts.
+Template No.=4
+[A]=all poor people
+[C]=lazy drug addicts
+[A']=four poor families
+[C']=
+
+# Example5
+If we ban cell phones because they are bad for teenagers next the government will ban all iPods and eventually all video games as well.
+Template No.=5
+[A]=
+[C]=
+[A']=
+[C']=
+
+# Query
+{}
+===
+=== fallacy_structure_analysis: False Causality ===
+# Task
+Identify the underlying structure of an argument of False Causality.
+Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, filling the template's placeholders.
+Please follow the Output Format!!!
+# List of Templates
+Template No.1:
+Premise 1: An entity/action [A] suppresses a good entity/action [C].
+Premise 2: An entity/action [A] is related to an entity/action [C]. This premise supports Premise 1.
+Conclusion: Therefore, [A] should not be brought about.
+
+Template No.2:
+Premise 1: An entity/action [A] promotes a bad entity/action [C].
+Premise 2: An entity/action [A] is related to an entity/action [C]. This premise supports Premise 1.
+Conclusion: Therefore, [A] should not be brought about.
+
+Template No.3:
+Premise 1: An entity/action [A] promotes a good entity/action [C].
+Premise 2: An entity/action [A] is related to an entity/action [C]. This premise supports Premise 1.
+Conclusion: Therefore, [A] should be brought about.
+
+Template No.4:
+Premise 1: An entity/action [A] suppresses a bad entity/action [C].
+Premise 2: An entity/action [A] is related to an entity/action [C]. This premise supports Premise 1.
+Conclusion: Therefore, [A] should be brought about.
+
+Template No.5:
+There is either no consequence in the argument, or the argument cannot be instantiated with one of the templates above.
+
+Template No.=[No.]
+[A]=
+[C]=
+
+# Example1
+You oversleep and then fail a test; so you assume that oversleeping causes you to fail tests
+Template No.=1
+[A]=oversleep
+[C]=test
+
+# Example2
+The accident was caused by the taxi parking in the street
+Template No.=2
+[A]=taxi parking in the street
+[C]=accident
+
+# Example3
+I have flipped heads five times in a row. As a result, the next flip will probably be tails.
+Template No.=3
+[A]=flipped heads five times in a row
+[C]=next flip will probably be tails
+
+# Example4
+I had a real bad headache, then saw my doctor. Just by talking with him, my headache started to subside, and I was all better the next day. It was well worth the $200 visit fee.
+Template No.=4
+[A]=talk with doctor
+[C]=headache
+
+# Example5
+â€œSince event Y followed event X, event Y must have been caused by event Xâ€. What fallacy is described in this logical form?
+Template No.=5
+[A]=
+[C]=
+
+# Query
+{}
+===
+=== fallacy_structure_analysis: Fallacy of Credibility ===
+# Task
+Identify the underlying structure of an argument of Fallacy of Credibility.
+Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, filling the template's placeholders.
+Please follow the Output Format!!!
+# List of Templates
+Template No.1:
+Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/action [A] suppresses a good entity/action [C].
+Conclusion: Therefore, [A] should not be brought about.
+
+Template No.2:
+Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/action [A] suppresses a bad entity/action [C].
+Conclusion: Therefore, [A] should be brought about.
+
+Template No.3:
+Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/action [A] promotes a good entity/action [C].
+Conclusion: Therefore, [A] should be brought about.
+
+Template No.4:
+Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/action [A] promotes a bad entity/action [C].
+Conclusion: Therefore, [A] should not be brought about.
+
+Template No.5:
+There is either no consequence in the argument, or the argument cannot be instantiated with one of the templates above.
+
+# Output Format
+Template No.=[No.]
+[A]=
+[C]=
+[X]=
+
+# Example1
+We should abolish the death penalty. Even Taylor Swift is opposed to it.
+Template No.=1
+[A]=abolish the death penalty
+[C]=Taylor Swift is opposed to it
+[X]=We
+
+# Example2
+As a police officer who has worked for the city for 15 years, I have been a witness to distracted drivers and something needs to be done.
+Template No.=2
+[A]=something needs to be done
+[C]=police officer who has worked for the city for 15 years
+[X]=distracted drivers
+
+# Example3
+Michael Jordan wears Hanes underwear, so you should too!
+Template No.=3
+[A]=Hanes underwear
+[C]=Michael Jordan
+[X]=you
+
+# Example4
+A little boy says that his friends should not go swimming in a river because his Mama said there were germs in the river.
+Template No.=4
+[A]=go swimming in a river
+[C]=his Mama
+[X]=germs
+
+# Example5
+A book argues that global warming is not actually happening, and cites the research of one environmental scientist who has been studying climate change for several years.
+Template No.=5
+[A]=
+[C]=
+[X]=
+
+
+# Query
+{}
+===
+Collapse
