@@ -8,75 +8,114 @@ Argument:
 ===
 === fallacy_structure_analysis: False Dilemma ===
 # Task
-Identify the underlying structure of an argument of False Dilemma.
-Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, filling the template's placeholders.
-Please follow the Output Format!!!
+Identify the underlying structure of a fallacious argument which is a False Dilemma.
+Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, choosing the template's placeholders, [A] and [C], directly from the input text. Additionally, the text must be a consecutive sequence of one or more terms without any conjugation. Please follow the output format.
+
+# Definitions
+Entity: a noun phrase in the input.
+Event: a verb phrase in the input.
+Placeholder: A fill-in-the-blank choice within a template. Each placeholder may either be an entity or an event.
+Please note! Placeholders can ONLY be either an entity (i.e., noun phrase) or an event (i.e., verb phrase) and may not be any other type of phrase (e.g., prepositional phrase).
+
 # List of Templates
 Template No.1:
-Premise 1: An entity/action [A] promotes a good entity/action [C].
-Premise 2: The absence of an entity/action [A] suppresses a good entity/action [C].
+Premise 1: An entity/event [A] promotes a good entity/event [C].
+Premise 2: The absence of an entity/event [A] suppresses a good entity/event [C].
 Conclusion: Therefore, [A] should be brought about.
 
 Template No.2:
-Premise 1: An entity/action [A] suppresses a bad entity/action [C]
-Premise 2: The absence of an entity/action [A] promotes a bad entity/action [C].
+Premise 1: An entity/event [A] suppresses a bad entity/event [C]
+Premise 2: The absence of an entity/event [A] promotes a bad entity/event [C].
 Conclusion: Therefore, [A] should be brought about.
 
 Template No.3:
-Premise 1: An entity/action [A] suppresses a good entity/action [C]
-Premise 2: The absence of an entity/action [A] promotes a good entity/action [C].
+Premise 1: An entity/event [A] suppresses a good entity/event [C]
+Premise 2: The absence of an entity/event [A] promotes a good entity/event [C].
 Conclusion: Therefore, [A] should not be brought about.
 
 Template No.4:
-Premise 1: An entity/action [A] promotes a bad entity/action [C]
-Premise 2: The absence of an entity/action [A] suppresses a bad entity/action [C].
+Premise 1: An entity/event [A] promotes a bad entity/event [C]
+Premise 2: The absence of an entity/event [A] suppresses a bad entity/event [C].
 Conclusion: Therefore, [A] should not be brought about.
 
 Template No.5:
-There is either no consequence in the argument, or the argument cannot be instantiated with one of the templates above.
+The argument cannot be instantiated with one of the templates above.
 
 # Output Format
 Template No.=[No.]
 [A]=
 [C]=
 
-# Example
-People either like coffee or hate it.
-Template No.=2
-[A]=like coffee
-[C]=hate it
+# Important Criteria: Prioritizing entities over events for placeholder.
+For choosing placeholder, please prioritize entities over events in the case that an entity itself captures the underlying intent of the argument opposed to the event. However, if the event makes more sense, please choose an event for the placeholder.
+
+# Correct Example
+Input: To get better schools, we have to raise taxes. If we don't, we can't have better schools.
+Output:
+Template No.=1
+[A]=raise taxes
+[C]=schools
+Explanation:
+Here, there are 2 possible options for [C] which are "schools" (i.e., entity) and "can't have better schools" (i.e., event). Since the entity is the top priority and the second option does not work with template 1 because it is a suppressed relation, "schools" is cchosen for [C].
+Also, [A] and [C] are taken directly from the input text. For example, "raising taxes" as [A] also sounds correct, but the term "raising" is not mentioned in the input text. That is why "raise taxes" is chosen for [A]. Because the argument believes that "raise taxes" promote "schools" while not "raise taxes" suppress "school". he conclusion is implicit that “Premise 1 supports that raise taxes should be brought about.” Thus, Template No.=1 is selected.
+
+# Wrong Example
+Input: To get better schools, we have to raise taxes. If we don't, we can't have better schools.
+Output:
+Template No.=1
+[A]=raising taxes
+[C]=can't have better schools
+Explanation:
+Here, there are 2 possible options for [C] which are "schools" (i.e., entity) and "can't have better schools" (i.e., event). However, "can't have better schools" as [C] is incorrect because it is an event instead of the entity of "schools" which already makes sense.
+Also, "raising taxes" as [A] is incorrect because the placeholder is not taken directly from the text. Here "raising taxes" is chosen as [A] but the word "raising" does not appear in the input text. Therefore the correct correct choice for [A] is "raise taxes".
+
+# Example1
+Input: If you can't prove that Ken had an affair with the nanny, then he's been faithful to his wife.
+Output:
+Template No.=1
+[A]=prove that Ken had an affair with the nanny
+[C]=he's been faithful to his wife
+
+Again, please only select the placeholders directly from the text!
 
 # Query
-{}
+Input: {}
+Output:
 ===
 === fallacy_structure_analysis: Faulty Generalization ===
 # Task
-Identify the underlying structure of an argument of Faulty Generalization.
-Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, filling the template's placeholders.
-Please follow the Output Format!!!
+Identify the underlying structure of a fallacious argument which is a Faulty Generalization.
+Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, choosing the template's placeholders, [A], [C], [A'], and [C'], directly from the input text. Additionally, the text must be a consecutive sequence of one or more terms without any conjugation. Please follow the output format.
+
+# Definitions
+Entity: a noun phrase in the input.
+Event: a verb phrase in the input.
+Placeholder: A fill-in-the-blank choice within a template. Each placeholder may either be an entity or an event.
+Please note! Placeholders can ONLY be either an entity (i.e., noun phrase) or an event (i.e., verb phrase) and may not be any other type of phrase (e.g., prepositional phrase).
+
 # List of Templates
 Template No.1:
-Premise 1: An entity/action [A] suppresses a good entity/action [C].
-Premise 2: An entity/action [A] or [A'] suppresses a good entity/action [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
+Premise 1: An entity/event [A] suppresses a good entity/event [C].
+Premise 2: An entity/event [A] or [A'] suppresses a good entity/event [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
 Conclusion: Therefore, [A] should not be brought about.
 
 Template No.2:
-Premise 1: An entity/action [A] promotes a bad entity/action [C].
-Premise 2: An entity/action [A] or [A'] promotes a bad entity/action [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
+Premise 1: An entity/event [A] promotes a bad entity/event [C].
+Premise 2: An entity/event [A] or [A'] promotes a bad entity/event [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
 Conclusion: Therefore, [A] should not be brought about.
 
 Template No.3:
-Premise 1: An entity/action [A] promotes a good entity/action [C].
-Premise 2: An entity/action [A] or [A'] promotes a good entity/action [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
+Premise 1: An entity/event [A] promotes a good entity/event [C].
+Premise 2: An entity/event [A] or [A'] promotes a good entity/event [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
 Conclusion: Therefore, [A] should be brought about.
 
 Template No.4:
-Premise 1: An entity/action [A] suppresses a bad entity/action [C].
-Premise 2: An entity/action [A] or [A'] suppresses a bad entity/action [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
+Premise 1: An entity/event [A] suppresses a bad entity/event [C].
+Premise 2: An entity/event [A] or [A'] suppresses a bad entity/event [C] or [C'], where [A] is not equivalent to [A'] and [C] is not equivalent [C']. [A'] is the subset of [A] and [C'] is the subset of [C]. This premise supports Premise 1.
 Conclusion: Therefore, [A] should be brought about.
 
 Template No.5:
-There is either no consequence in the argument, or the argument cannot be instantiated with one of the templates above.
+The argument cannot be instantiated with one of the templates above.
 
 # Output Format
 Template No.=[No.]
@@ -85,83 +124,154 @@ Template No.=[No.]
 [A']=
 [C']=
 
-# Example
-I know four poor families. They are lazy drug addicts. Therefore, all poor people are lazy drug addicts.
+# Important Criteria: Prioritizing entities over events for placeholder.
+For choosing placeholder, please prioritize entities over events in the case that an entity itself captures the underlying intent of the argument opposed to the event. However, if the event makes more sense, please choose an event for the placeholder.
+
+# Correct Example
+Input: I know four poor families. They are lazy drug addicts. Therefore, all poor people are lazy drug addicts.
+Output:
 Template No.=2
 [A]=all poor people
 [C]=lazy drug addicts
 [A']=four poor families
 [C']=
+Explanation:
+Here, there are 2 possible options for [A'] which are "four poor families" (i.e., entity) and "know four poor families" (i.e., event). Both options make sense as placeholders but since the entity is the top priority, "four poor families" is chosen for [A'].
+Also, [A], [C], and [A'] are taken directly from the input text. For example, "every poor people" as [A] also sounds correct, but the term "every" is not mentioned in the input text. That is why "four poor families" is chosen as [A]. Because the argument believes that "four poor families" is "lazy drug addicts" supports "all poor people" is "lazy drug addicts", the conclusion is implicit that "Premise 1 supports that "all poor people" should not be brought about." Thus, Template No.=2 is selected.  
+
+# Wrong Example
+Input: I know four poor families. They are lazy drug addicts. Therefore, all poor people are lazy drug addicts.
+Output:
+Template No.=[No.]
+[A]=every poor people
+[C]=lazy drug addicts
+[A']=know four poor families
+[C']=
+Explanation:
+Here, there are 2 possible options for [A'] which are "four poor families" (i.e., entity) and "know four poor families" (i.e., event). However, "know four poor families" as [A'] is incorrect because it is an event instead of the entity which already makes sense.
+Also, "every poor people" as [A] is incorrect because the placeholder is not taken directly from the text. Here "every poor people" is chosen as [A] but the word "every" does not appear in the input text. Therefore the correct one to fill [A] is "all poor people".
+
+# Example1
+Input: "My mother has always told me not to drink milk after eating fish because she knows a friend whose skin got patched after drinking milk and eating fish together. Besides, many other people have told me the same thing so it must be true."
+Output:
+Template No.=1
+[A]=drink milk after eating fish
+[C]=people
+[A']=
+[C']=friend
+
+Again, please only select the placeholders directly from the text, and select noun or verb phrases only!
 
 # Query
-{}
+Input: {}
+Output:
 ===
 === fallacy_structure_analysis: False Causality ===
 # Task
-Identify the underlying structure of an argument of False Causality.
-Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, filling the template's placeholders.
-Please follow the Output Format!!!
+Identify the underlying structure of a fallacious argument which is a False Causality.
+Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, choosing the template's placeholders, [A] and [C], directly from the input text. Additionally, the text must be a consecutive sequence of one or more terms without any conjugation. Please follow the output format.
+
+# Definitions
+Entity: a noun phrase in the input.
+Event: a verb phrase in the input.
+Placeholder: A fill-in-the-blank choice within a template. Each placeholder may either be an entity or an event.
+Please note! Placeholders can ONLY be either an entity (i.e., noun phrase) or an event (i.e., verb phrase) and may not be any other type of phrase (e.g., prepositional phrase).
+
 # List of Templates
 Template No.1:
-Premise 1: An entity/action [A] suppresses a good entity/action [C].
-Premise 2: An entity/action [A] is related to an entity/action [C]. This premise supports Premise 1.
+Premise 1: An entity/event [A] suppresses a good entity/event [C].
+Premise 2: An entity/event [A] is related to an entity/event [C]. This premise supports Premise 1.
 Conclusion: Therefore, [A] should not be brought about.
 
 Template No.2:
-Premise 1: An entity/action [A] promotes a bad entity/action [C].
-Premise 2: An entity/action [A] is related to an entity/action [C]. This premise supports Premise 1.
+Premise 1: An entity/event [A] promotes a bad entity/event [C].
+Premise 2: An entity/event [A] is related to an entity/event [C]. This premise supports Premise 1.
 Conclusion: Therefore, [A] should not be brought about.
 
 Template No.3:
-Premise 1: An entity/action [A] promotes a good entity/action [C].
-Premise 2: An entity/action [A] is related to an entity/action [C]. This premise supports Premise 1.
+Premise 1: An entity/event [A] promotes a good entity/event [C].
+Premise 2: An entity/event [A] is related to an entity/event [C]. This premise supports Premise 1.
 Conclusion: Therefore, [A] should be brought about.
 
 Template No.4:
-Premise 1: An entity/action [A] suppresses a bad entity/action [C].
-Premise 2: An entity/action [A] is related to an entity/action [C]. This premise supports Premise 1.
+Premise 1: An entity/event [A] suppresses a bad entity/event [C].
+Premise 2: An entity/event [A] is related to an entity/event [C]. This premise supports Premise 1.
 Conclusion: Therefore, [A] should be brought about.
 
 Template No.5:
-There is either no consequence in the argument, or the argument cannot be instantiated with one of the templates above.
+The argument cannot be instantiated with one of the templates above.
 
+# Output Format
 Template No.=[No.]
 [A]=
 [C]=
 
-# Example
-I had a real bad headache, then saw my doctor. Just by talking with him, my headache started to subside, and I was all better the next day. It was well worth the $200 visit fee.
-Template No.=4
-[A]=talking with him
-[C]=headache
+# Important Criteria: Prioritizing entities over events for placeholder.
+For choosing placeholder, please prioritize entities over events in the case that an entity itself captures the underlying intent of the argument opposed to the event. However, if the event makes more sense, please choose an event for the placeholder.
+
+# Correct Example
+Input: During the first week of July ice cream sales climbed, and during the second week murder rates climbed. Therefore, ice cream inspires murder.
+Output:
+Template No.=2
+[A]=ice cream
+[C]=murder
+Explanation:
+Here, there are 2 possible options for [A] which are "ice cream" (i.e., entity) and "ice cream sales" (i.e., event). Both options make sense as placeholders, but since the entity is the top priority, "ice cream" is chosen for [A].
+Also, [A] and [C] are taken directly from the input text. For example, "murdering" as [c] also sounds correct, but the term "murdering" is not mentioned in the input text. That is why “murder” is chosen as [C]. Because the argument believes that “ice cream” causes “murder”, the conclusion is implicit that “Premise 1 supports that ice cream should not be brought about.” Thus, Template No.=2 is selected
+
+# Wrong Example
+Input: During the first week of July ice cream sales climbed, and during the second week murder rates climbed. Therefore, ice cream inspires murder.
+Output:
+Template No.=2
+[A]=ice cream sales
+[C]=murdering
+Explanation:
+Here, there are 2 possible options for [A] which are "ice cream" (i.e., entity) and "ice cream sales" (i.e., event). However, “ice cream sales” as [A] is incorrect because it is an event instead of the entity “ice cream” which already makes sense.
+Also, "murdering" as [C] is incorrect because the placeholder is not taken directly from the text. Here "murdering" is chosen as [C], but the word "murdering" does not appear in the input text. Therefore the correct choice for [C] is "murder".
+
+# Example1
+Input: You oversleep and then fail a test; so you assume that oversleeping causes you to fail tests
+Outpu:
+Template No.=1
+[A]=oversleep
+[C]=test
+
+Again, please only select the placeholders directly from the text!
 
 # Query
-{}
+Input: {}
+Output:
 ===
 === fallacy_structure_analysis: Fallacy of Credibility ===
 # Task
-Identify the underlying structure of an argument of Fallacy of Credibility.
-Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, filling the template's placeholders.
-Please follow the Output Format!!!
+Identify the underlying structure of a fallacious argument which is a Fallacy of Credibility.
+Given a list of fallacy templates, your task is to choose a template that best describes the underlying fallacy structure, choosing the template's placeholders, [A], [C], and [X], directly from the input text. Additionally, the text must be a consecutive sequence of one or more terms without any conjugation. Please follow the output format.
+
+# Definitions
+Entity: a noun phrase in the input.
+Event: a verb phrase in the input.
+Placeholder: A fill-in-the-blank choice within a template. Each placeholder may either be an entity or an event.
+Please note! Placeholders can ONLY be either an entity (i.e., noun phrase) or an event (i.e., verb phrase) and may not be any other type of phrase (e.g., prepositional phrase).
+
 # List of Templates
 Template No.1:
-Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/action [A] suppresses a good entity/action [C].
+Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/event [A] suppresses a good entity/event [C].
 Conclusion: Therefore, [A] should not be brought about.
 
 Template No.2:
-Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/action [A] suppresses a bad entity/action [C].
+Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/event [A] suppresses a bad entity/event [C].
 Conclusion: Therefore, [A] should be brought about.
 
 Template No.3:
-Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/action [A] promotes a good entity/action [C].
+Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/event [A] promotes a good entity/event [C].
 Conclusion: Therefore, [A] should be brought about.
 
 Template No.4:
-Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/action [A] promotes a bad entity/action [C].
+Premise: An authority or credible source (e.g. person, group, concept, convention, etc.) entity, convention, or authorities [X] promotes that an entity/event [A] promotes a bad entity/event [C].
 Conclusion: Therefore, [A] should not be brought about.
 
 Template No.5:
-There is either no consequence in the argument, or the argument cannot be instantiated with one of the templates above.
+The argument cannot be instantiated with one of the templates above.
 
 # Output Format
 Template No.=[No.]
@@ -169,14 +279,42 @@ Template No.=[No.]
 [C]=
 [X]=
 
-# Example
-Michael Jordan wears Hanes underwear, so you should too!
+# Important Criteria: Prioritizing entities over events for placeholder.
+For choosing placeholder, please prioritize entities over events in the case that an entity itself captures the underlying intent of the argument opposed to the event. However, if the event makes more sense, please choose an event for the placeholder.
+
+# Correct Example
+Input: Michael Jordan wears Hanes underwear, so you should too!
+Output:
 Template No.=3
 [A]=Hanes underwear
-[C]=Michael Jordan
-[X]=you
+[C]=you
+[X]=Michael Jordan
+Explanation:
+Here, there are 2 possible options for [A] which are "Hanes underwear" (i.e., entity) and "wear Hanes underwear" (i.e., event). Both options make sense  as placeholders, but since the entity is the top priority, "Hanes underwear" is chosen for [A].
+Also, [A], [C], and [X] are taken directly from the input text. For example, "Chicago Bulls player Michael Jordan" as [X] also sounds correct, but the term "Chicago Bulls player" is not mentioned in the input text. That is why "Michael Jordan" is chosen as [X]. Because the argument belive that "Michael Jordan" promote the premise "Hanes underwear" good for "you", the conclusion is implicit that "Premise supports that  "Hanes underwear" should be brought about." Thus, Template No.=3 is selected
 
+# Wrong Example
+Input: Michael Jordan wears Hanes underwear, so you should too!
+Output:
+Template No.=3
+[A]=wears Hanes underwear
+[C]=you
+[X]=Chicago Bulls player Michael Jordan
+Explanation:
+Here, there are 2 possible options for [A] which are "Hanes underwear" (i.e., entity) and "wears Hanes underwear" (i.e., event). However, "wears Hanes underwear" as [A] is incorrect because it is an event instead of the entity "Hanes underwear" which already makes sense.
+Also, "Chicago Bulls player Michael Jordan" as [X] is incorrect is because the placeholder is not taken directly from the text. Here "Chicago Bulls player Michael Jordan" is chosen as [X] but the word "Chicago Bulls player" does not appear in the input text. Therefore the correct choice for [X] is "Michael Jordan".
+
+# Example1
+Input: We should abolish the death penalty. Even Taylor Swift is opposed to it.
+Output:
+Template No.=1
+[A]=abolish the death penalty
+[C]=We
+[X]=Taylor Swift is opposed to it
+
+Again, please only select the placeholders directly from the text!
 # Query
-{}
+Input: {}
+Output:
 ===
 Collapse
