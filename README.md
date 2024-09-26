@@ -5,7 +5,6 @@ We present **Flee the Flaw (FtF)**, a dataset created for representing the struc
 ### Contents
 
 - **ftf\_dataset.csv**: Our Flee the Flaw (FtF) dataset.
-- **ftf\_result**: Folder containing the results of running the LLM experiments 5 times and 10 times.
 - **ftf\_prompts**: Folder containing the prompts that were used for the LLM experiments.
 - **ftf_guidelines.pdf**: The guidelines used for creating FtF.
 
@@ -33,14 +32,6 @@ Below, we describe the columns in `ftf_dataset.csv`.
 - **template\_annotator\_2**: Template (1-5) selected for the respective `fallacy_type` template set by annotator 2.
 - **is\_arg\_consequences\_annotator\_1**: Parameter used to determine if the fallacious argument can be represented using Walton (2008)'s argument from consequence scheme. `yes` if `template_annotator_1` is 1-4, else `no`
 - **is\_arg\_consequences\_annotator\_2**: Parameter used to determine if the fallacious argument can be represented using Walton (2008)'s argument from consequence scheme. `yes` if `template_annotator_2` is 1-4, else `no`
-
-### ftf_result
-Below, we describe the details of both CSV files inside the folder `ftf_result`.
-
-- **Template Selection**: The result of the template selection task
-- **Slot-filling**: The result of the slot-filling task for both `exact match` and `partial match` 
-- **model name (Template Selection)**: In the `model` column, the format of the name for the template selection task is `model_name-shot(runtime)prompt`. For example, `gpt-4-1(10)pr1` means the model is gpt-4 using 1-shot prompt first type with 10 times running. 
-- **model name (Slot-filling)**: In the `model` column, the format of the name for the slot-filling task is `model_name-shot-em/pm(runtime)prompt`. For example, `gpt-4-zero-em(10)pr2` means the model is gpt-4 using zero-shot prompt second type with 10 times running.
 
 ### References
 [1] Zhijing Jin, Abhinav Lalwani, Tejas Vaidhya, Xiaoyu Shen, Yiwen Ding, Zhiheng Lyu, Mrinmaya Sachan, Rada Mihalcea, and Bernhard Schoelkopf. 2022. Logical fallacy detection. In Findings of the Association for Computational Linguistics: EMNLP 2022, pages 7180–7198, Abu Dhabi, United Arab Emirates. Association for Computational Linguistics.
